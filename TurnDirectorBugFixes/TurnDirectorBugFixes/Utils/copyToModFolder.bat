@@ -1,0 +1,1 @@
+﻿xcopy /YE "D:\Projects\Battletech\BattleTech\Projects\Mods\TurnDirectorBugFixes\Build\TurnDirectorBugFixes" "C:\Program Files (x86)\Steam\steamapps\common\BATTLETECH\Mods\"

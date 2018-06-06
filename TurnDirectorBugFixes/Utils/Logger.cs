@@ -2,7 +2,7 @@
 using System;
 using System.Reflection;
 
-namespace nl.flukeyfiddler.bt.TurnDirectorBugFixes.Util
+namespace nl.flukeyfiddler.bt.TurnDirectorBugFixes.Utils
 {
     public static class Logger
     {

@@ -1,5 +1,5 @@
 ﻿using Harmony;
-using nl.flukeyfiddler.bt.TurnDirectorBugFixes.Util;
+using nl.flukeyfiddler.bt.TurnDirectorBugFixes.Utils;
 using nl.flukeyfiddler.bt.Utils.Logger;
 using System.IO;
 using System.Reflection;

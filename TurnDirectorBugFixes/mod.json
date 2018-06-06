@@ -3,11 +3,10 @@
     "Enabled": true,
 
     "Version": "0.1.0",
-    "Description": "Fix Loading into unresponsiv combat game and AI getting stuck in infinite loop",
+    "Description": "Fix Loading into unresponsive combat game and AI getting stuck in infinite loop",
     "Author": "FlukeyFiddler",
     "Website": "http://www.github.com/FlukeyFiddler/TurnDirectorBugFixes",
     "DLL": "TurnDirectorBugFixes.dll",
     "Settings": {
-        "MaxManualReloadsPerGame": 0
     }
 }
