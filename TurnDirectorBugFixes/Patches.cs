@@ -5,14 +5,18 @@ using nl.flukeyfiddler.bt.TurnDirectorBugFixes.Utils;
 
 namespace nl.flukeyfiddler.bt.TurnDirectorBugFixes
 {
-    
-    [HarmonyPatch(typeof(TurnDirector), "Load")]
-    public class TurnDirector_Load_Patch
+    [HarmonyPatch(typeof(GameInstance), "Save")]
+    public class GameInstance_Save_Patch
     {
-        public static void Postfix()
+        public static bool Postfix(GameInstance __instance)
         {
-            Logger.Line("sdfasf");  
+            MultiSequence multiSequence = __instance.Combat.StackManager.GetAnyParentableMultiSequence();
+            if (multiSequence != null)
+            {
+                Logger.Line("Sequence not complete!");
+                return true;
+            }
+            return true;
         }
     }
-    
 }

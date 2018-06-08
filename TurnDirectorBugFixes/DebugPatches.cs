@@ -15,113 +15,55 @@ namespace nl.flukeyfiddler.bt.TurnDirectorBugFixes
         {
             Logger.Line("Main Menu");
         }
-    }
+    }      
 
-    [HarmonyPatch(typeof(TurnDirector), "Load")]
-    public class TurnDirector_Load_Patch_Debug
+    [HarmonyPatch(typeof(GameInstance), "CanSave")]
+    public class GameInstance_CanSave_Patch_Debug
     {
-        public static void Postfix(TurnDirector __instance)
+        public static void Postfix(GameInstance __instance, bool __result)
         {
-            Logger.Line("In Load Postfix");
+            if (__result ==  false && __instance.Combat != null
+                && Helper.stackManagerStillTwo(__instance.Combat.StackManager)) {
+                Logger.Line("returning true, but there are more than 2 Sequences in the stack",
+                    MethodBase.GetCurrentMethod());
+            }
+        }
+    }    
 
-            List<string> debugLines = new List<string>();
-
-            debugLines.Add("Active TurnActorIndex: " + __instance.ActiveTurnActorIndex);
-            debugLines.Add("TurnActors:");
-            debugLines.Add("Me: " + __instance.Combat.LocalPlayerTeamGuid);
-            int index = 0;
-            foreach (TurnActor turnActor in __instance.TurnActors)
+    [HarmonyPatch(typeof(CombatGameState), "CanSave")]
+    public class CombatGameState_CanSave_Patch_Debug
+    {
+        public static void Postfix(CombatGameState __instance, bool __result)
+        {
+            if (__result == false && Helper.stackManagerStillTwo(__instance.StackManager))
             {
-                debugLines.Add("index: " + index++);
-                debugLines.Add("GUID: " + turnActor.GUID);
-
-                AbstractActor abstractActor = __instance.Combat.FindActorByGUID(turnActor.GUID);
-                debugLines.Add("name: " + abstractActor.DisplayName);
-                debugLines.Add("abstractActor can move after shooting: " + 
-                    abstractActor.CanMoveAfterShooting);
-                debugLines.Add("... can shoot after sprinting: " +
-                    abstractActor.CanShootAfterSprinting);
-                debugLines.Add("... is completing Activation" +
-                    abstractActor.IsCompletingActivation);
-                debugLines.Add("... has moved this round still set" +
-                    abstractActor.HasMovedThisRound);
-                debugLines.Add("... has sprinted this round still set" +
-                    abstractActor.HasSprintedThisRound);
-                debugLines.Add("stats to string" + abstractActor.StatCollection.ToString());
+                Logger.Line("returning true, but there are more than 2 Sequences in the stack",
+                    MethodBase.GetCurrentMethod());
             }
-            debugLines.Add("CurrentPhase" + __instance.CurrentPhase);
-            debugLines.Add("CurrentRound" + __instance.CurrentRound);
-            debugLines.Add("IsInterleaved" + __instance.IsInterleaved);
-            debugLines.Add("IsInterleavePending" + __instance.IsInterleavePending);
-
-            
-
-            Logger.Block(debugLines.ToArray());
         }
     }
 
-    [HarmonyPatch(typeof(CombatGameState), "Load")]
-    public class CombatGameState_Load_Patch_Debug
+    [HarmonyPatch(typeof(StackManager), "CanSave")]
+    public class StackManager_CanSave_Patch_Debug
     {
-        public static void Postfix(CombatGameState __instance)
+        public static void Postfix(StackManager __instance, bool __result)
         {
-            Logger.Line("in combatstate load");
-
-            Logger.Line("turnDirector GameHasBegun: " + __instance.TurnDirector.GameHasBegun);
-            Logger.Line("localPlayerGUID: " + __instance.LocalPlayerTeamGuid);
-            Logger.Line("attackDirector any attack active: " + __instance.AttackDirector.IsAnyAttackSequenceActive);
-        }
-    }
-
-    [HarmonyPatch(typeof(TurnDirector), "InitFromSave")]
-    public class TurnDirector_InitFromSave_Patch_Debug
-    {
-        public static void Postfix(TurnDirector __instance)
-        {
-            List<string> debugLines = new List<string>(){"turnActors:"};
-
-            foreach(TurnActor actor in __instance.TurnActors)
+            if (__result == false && Helper.stackManagerStillTwo(__instance))
             {
-                debugLines.Add(actor.GUID);
+                Logger.Line("returning true, but there are more than 2 Sequences in the stack",
+                    MethodBase.GetCurrentMethod());
             }
-
-            List<string> turnActorGUIDS = Traverse.Create(__instance).Property("turnActorGUIDS").GetValue<List<string>>();
-
-            debugLines.Add("TurnActorGUIDS: \r\n");
-            foreach (string actorGUID in turnActorGUIDS) {
-                debugLines.Add(actorGUID);
-            }
-
-            debugLines.Add("Active turn actor: " + __instance.ActiveTurnActor.GUID);
-            debugLines.Add("Active turn actorindex: " + __instance.ActiveTurnActorIndex);
-            debugLines.Add("current round: " + __instance.CurrentRound);
-            debugLines.Add("current phase: " + __instance.CurrentPhase);
-
-            Logger.Block(debugLines.ToArray(), MethodBase.GetCurrentMethod());
-
-            __instance.OnTurnActorActivateComplete();
-
         }
     }
-    [HarmonyPatch(typeof(CombatGameState), "_Init")]
-    public class CombatGameState_Init_Patch_Debug
+
+    public class Helper
     {
-        public static void Postfix(CombatGameState __instance)
+        public static bool stackManagerStillTwo(StackManager stackManager)
         {
-            List<string> debugLines = new List<string>();
-
-            debugLines.Add("myTeam GUID" + __instance.LocalPlayerTeamGuid);
-
-            Logger.Block(debugLines.ToArray(), MethodBase.GetCurrentMethod());
+            int sequencesInStack = Traverse.Create(stackManager).Field("SequenceStack").
+                Property("Count").GetValue<int>();
+            return sequencesInStack == 2;
         }
     }
-
-    [HarmonyPatch(typeof(CombatGameState), "_InitFromSave")]
-    public class CombatGameState_InitFromSave_Patch_Debug
-    {
-        public static void Postfix()
-        {
-            
-        }
-    }
+   
 }
