@@ -1,11 +1,10 @@
 ﻿{
-    "Name": "TurnDirectorBugFixes",
+    "Name": "RamboSixTheGarbageMan",
     "Enabled": true,
-
     "Version": "0.1.0",
-    "Description": "Fix Loading into unresponsive combat game and AI getting stuck in infinite loop",
+    "Description": "Veeeery dirty fix to force garbage collection before mission load",
     "Author": "FlukeyFiddler",
-    "Website": "http://www.github.com/FlukeyFiddler/TurnDirectorBugFixes",
-    "DLL": "TurnDirectorBugFixes.dll",
+    "Website": "http://www.github.com/FlukeyFiddler/RamboSixTheGarbageMan",
+    "DLL": "RamboSixTheGarbageMan.dll",
     "Settings": {}
 }

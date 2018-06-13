@@ -1,16 +1,16 @@
 ﻿using Harmony;
-using nl.flukeyfiddler.bt.TurnDirectorBugFixes.Utils;
+using nl.flukeyfiddler.bt.RamboSixTheGarbageMan.Utils;
 using nl.flukeyfiddler.bt.Utils.Logger;
 using System.IO;
 using System.Reflection;
 
-namespace nl.flukeyfiddler.bt.TurnDirectorBugFixes
+namespace nl.flukeyfiddler.bt.RamboSixTheGarbageMan
 {
-    public class TurnDirectorBugFixes
+    public class RamboSixTheGarbageMan
     {
         public static void Init(string modDirectory, string settingsJSON)
         {
-            var harmony = HarmonyInstance.Create("nl.flukeyfiddler.bt.TurnDirectorBugFixes");
+            var harmony = HarmonyInstance.Create("nl.flukeyfiddler.bt.RamboSixTheGarbageMan");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
 
 

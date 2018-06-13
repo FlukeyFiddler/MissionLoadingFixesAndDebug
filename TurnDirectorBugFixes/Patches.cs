@@ -2,11 +2,11 @@
 using System.Reflection;
 using BattleTech;
 using Harmony;
-using nl.flukeyfiddler.bt.TurnDirectorBugFixes.Utils;
+using nl.flukeyfiddler.bt.RamboSixTheGarbageMan.Utils;
 using UnityEngine;
 using UnityEngine.PostProcessing;
 
-namespace nl.flukeyfiddler.bt.TurnDirectorBugFixes
+namespace nl.flukeyfiddler.bt.RamboSixTheGarbageMan
 {
     // prevent crapload of nullreferenceExceptions being logged from PostProcessor
     [HarmonyPatch(typeof(PostProcessingBehaviour), "Update")]
@@ -63,7 +63,7 @@ namespace nl.flukeyfiddler.bt.TurnDirectorBugFixes
     {
         private static void Postfix()
         {
-            Resources.UnloadUnusedAssets();
+           Resources.UnloadUnusedAssets();
         }
     }
 }
