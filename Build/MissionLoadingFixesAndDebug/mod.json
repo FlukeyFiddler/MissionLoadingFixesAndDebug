@@ -1,10 +1,10 @@
 ﻿{
-    "Name": "RamboSixTheGarbageMan",
-    "Enabled": false,
+    "Name": "MissionLoadingFixesAndDebug",
+    "Enabled": true,
     "Version": "0.1.0",
     "Description": "Veeeery dirty fix to force garbage collection before mission load",
     "Author": "FlukeyFiddler",
     "Website": "http://www.github.com/FlukeyFiddler/RamboSixTheGarbageMan",
-    "DLL": "RamboSixTheGarbageMan.dll",
+    "DLL": "MissionLoadingFixesAndDebug.dll",
     "Settings": {}
 }
