@@ -2,13 +2,15 @@
 using System.Reflection;
 using BattleTech;
 using Harmony;
-using nl.flukeyfiddler.bt.RamboSixTheGarbageMan.Utils;
+using nl.flukeyfiddler.bt.MissionLoadingFixesAndDebug.Utils;
 using UnityEngine;
 using UnityEngine.PostProcessing;
 
-namespace nl.flukeyfiddler.bt.RamboSixTheGarbageMan
+namespace nl.flukeyfiddler.bt.MissionLoadingFixesAndDebug
 {
-    // prevent crapload of nullreferenceExceptions being logged from PostProcessor
+    // prevent stream of nullreferenceExceptions being logged from PostProcessor
+    // this happens to me when all advanced videos settings are off
+    // Videocard GTX745
     [HarmonyPatch(typeof(PostProcessingBehaviour), "Update")]
     public class PostProcessingBehaviour_Update_Patch
     {
@@ -50,7 +52,7 @@ namespace nl.flukeyfiddler.bt.RamboSixTheGarbageMan
 
             } catch (NullReferenceException ex)
             {
-                Utils.Logger.Minimal(ex.ToString());
+                //Utils.Logger.Minimal(ex.ToString());
             }
 
             return false;

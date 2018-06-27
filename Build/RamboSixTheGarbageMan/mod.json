@@ -1,10 +1,10 @@
 ﻿{
     "Name": "RamboSixTheGarbageMan",
-    "Enabled": true,
+    "Enabled": false,
     "Version": "0.1.0",
-    "Description": "Very dirty fix to force garbage collection before mission load",
+    "Description": "Veeeery dirty fix to force garbage collection before mission load",
     "Author": "FlukeyFiddler",
-    "Website": "http://www.github.com/FlukeyFiddler/TurnDirectorBugFixes",
+    "Website": "http://www.github.com/FlukeyFiddler/RamboSixTheGarbageMan",
     "DLL": "RamboSixTheGarbageMan.dll",
     "Settings": {}
 }

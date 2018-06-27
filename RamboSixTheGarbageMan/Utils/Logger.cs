@@ -2,7 +2,7 @@
 using System;
 using System.Reflection;
 
-namespace nl.flukeyfiddler.bt.RamboSixTheGarbageMan.Utils
+namespace nl.flukeyfiddler.bt.MissionLoadingFixesAndDebug.Utils
 {
     public static class Logger
     {
