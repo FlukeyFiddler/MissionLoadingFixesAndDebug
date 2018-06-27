@@ -2,9 +2,9 @@
     "Name": "MissionLoadingFixesAndDebug",
     "Enabled": true,
     "Version": "0.1.0",
-    "Description": "Veeeery dirty fix to force garbage collection before mission load",
+    "Description": "Various fixes and debug logging for mission loading issues",
     "Author": "FlukeyFiddler",
-    "Website": "http://www.github.com/FlukeyFiddler/RamboSixTheGarbageMan",
+    "Website": "http://www.github.com/FlukeyFiddler/MissionLoadingFixesAndDebug",
     "DLL": "MissionLoadingFixesAndDebug.dll",
     "Settings": {}
 }

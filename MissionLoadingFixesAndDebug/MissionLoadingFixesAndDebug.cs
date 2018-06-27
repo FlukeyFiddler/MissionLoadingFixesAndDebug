@@ -8,9 +8,11 @@ namespace nl.flukeyfiddler.bt.MissionLoadingFixesAndDebug
 {
     public class MissionLoadingFixesAndDebug
     {
+        public static HarmonyInstance harmony;
+
         public static void Init(string modDirectory, string settingsJSON)
         {
-            var harmony = HarmonyInstance.Create("nl.flukeyfiddler.bt.MissionLoadingFixesAndDebug");
+            harmony = HarmonyInstance.Create("nl.flukeyfiddler.bt.MissionLoadingFixesAndDebug");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
 
 
